@@ -1,0 +1,70 @@
+@startuml
+
+class board {
+   {field} + white : player *
+   {field} + black : player *
+   {field} + squares : square ***
+  {method} + board * init_board(void)
+  {method} + void debug_board(board *)
+  {method} + void free_board(board *)
+}
+
+class square {
+   {field} + square_color : color
+   {field} + rank : int
+   {field} + file : char
+  {method} + square * init_square(char, int, int)
+  {method} + void debug_square(square *)
+  {method} + void free_square(square *)
+}
+
+class player {
+   {field} + king : piece *
+   {field} + queen : piece **
+   {field} + knight : piece **
+   {field} + rook : piece **
+   {field} + bishop : piece **
+   {field} + piece_color : color
+   {field} + move_no : int
+  {method} + player * init_player(void)
+  {method} + remove_piece(piece_type, int, char)
+  {method} + void debug_player(player *)
+  {method} + void free_player(player *)
+}
+
+class piece {
+   {field} + type : piece_type
+   {field} + occupation : square *
+  {method} + piece * init_piece(piece_type, square *)
+  {method} + void piece_debug(piece *)
+  {method} + void free_piece(piece *)
+}
+
+enum piece_type {
+  KING,
+  QUEEN,
+  ROOK,
+  KNIGHT,
+  BISHOP,
+  PAWN
+  {method} + const char * piece_type_to_string(piece_type)
+}
+
+enum color {
+  WHITE,
+  BLACK
+  {method} + const char * color_to_string(color)
+}
+
+piece o--> piece_type
+piece o--> square
+
+player o--> piece
+player o--> color
+
+board "1" o--> "2" player
+board "1" o--> "64" square
+
+square o--> color
+
+@enduml

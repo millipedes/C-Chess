@@ -9,6 +9,7 @@
 typedef struct PIECE_T {
   piece_type type;
   color piece_color;
+  int has_moved;
 } piece;
 
 piece * init_piece(piece_type type, color piece_color);

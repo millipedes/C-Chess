@@ -30,7 +30,7 @@ player * init_player(square *** board, color piece_color) {
   // Queen
   add_piece(the_player, QUEEN, board[offset==6 ? offset + 1 : offset - 1][3]);
   // King
-  add_piece(the_player, QUEEN, board[offset==6 ? offset + 1 : offset - 1][4]);
+  add_piece(the_player, KING, board[offset==6 ? offset + 1 : offset - 1][4]);
   return the_player;
 }
 
